@@ -1,0 +1,18 @@
+Sheep: pause=4, trip limit=2.5, energy/metre=3, rest recovery/s=7, rest thresholds=35/80
+Cow: pause=5, trip limit=2, energy/metre=2.5, rest recovery/s=5, rest thresholds=25/80
+Pig: pause=1.5, trip limit=3, energy/metre=3, rest recovery/s=7, rest thresholds=25/80
+Horse: pause=2, trip limit=5, energy/metre=5, rest recovery/s=6, rest thresholds=30/80
+PASS: existing Phase 5/6 component regression tests.
+Daisy (Sheep): own pen/food/water/care/Animator references valid; route points and starting/between-trough paths clear.
+Marguerite (Cow): own pen/food/water/care/Animator references valid; route points and starting/between-trough paths clear.
+Peppa (Pig): own pen/food/water/care/Animator references valid; route points and starting/between-trough paths clear.
+Spirit (Horse): own pen/food/water/care/Animator references valid; route points and starting/between-trough paths clear.
+PASS: new pen footprints clear of existing rendered scenery/plots; all three player entrances clear; 400 sampled destinations remain bounded.
+PASS: actual shared AI methods on all four species: independent feeding/drinking portions, satisfaction, species HUD, treatment and cooldown/recovery.
+PASS: wrong-enclosure resource rejection; competing multi-portion requests cannot overspend; invalid/overflow requests rejected.
+Editor method/physics/Animator checks only; no Play Mode gameplay testing.
+PASS Sheep: energy math/clamps, no food energy, 16 welfare corners and status boundaries, preserved animated size, independent tuning, 100-tick rest hysteresis/empty-resource stability, severe food/water/care interrupts, recovery, timeout and bounded wandering.
+PASS Cow: energy math/clamps, no food energy, 16 welfare corners and status boundaries, preserved animated size, independent tuning, 100-tick rest hysteresis/empty-resource stability, severe food/water/care interrupts, recovery, timeout and bounded wandering.
+PASS Pig: energy math/clamps, no food energy, 16 welfare corners and status boundaries, preserved animated size, independent tuning, 100-tick rest hysteresis/empty-resource stability, severe food/water/care interrupts, recovery, timeout and bounded wandering.
+PASS Horse: energy math/clamps, no food energy, 16 welfare corners and status boundaries, preserved animated size, independent tuning, 100-tick rest hysteresis/empty-resource stability, severe food/water/care interrupts, recovery, timeout and bounded wandering.
+PASS: saved scene and all owned prefab script/object references. No Play Mode testing performed.

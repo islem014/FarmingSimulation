@@ -1,0 +1,6 @@
+Assets\FarmingSimulation\Scripts\Animals\AnimalStats.cs
+Assets\FarmingSimulation\Animals\Prefabs\AnimalEnclosure.prefab
+Assets\FarmingSimulation\Scripts\Animals\SheepBehaviour.cs
+Assets\FarmScene.unity
+Assets\FarmingSimulation\Scripts\Animals\SheepInteractable.cs
+Assets\FarmingSimulation\Animals\Prefabs\Sheep.prefab

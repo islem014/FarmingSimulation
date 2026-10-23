@@ -1,0 +1,10 @@
+Validation of the saved scene reloaded from disk:
+Daisy (Sheep): own pen/food/water/care/Animator references valid; route points and starting/between-trough paths clear.
+Marguerite (Cow): own pen/food/water/care/Animator references valid; route points and starting/between-trough paths clear.
+Peppa (Pig): own pen/food/water/care/Animator references valid; route points and starting/between-trough paths clear.
+Spirit (Horse): own pen/food/water/care/Animator references valid; route points and starting/between-trough paths clear.
+PASS: new pen footprints clear of existing rendered scenery/plots; all three player entrances clear; 400 sampled destinations remain bounded.
+PASS: actual shared AI methods on all four species: independent feeding/drinking portions, satisfaction, species HUD, treatment and cooldown/recovery.
+PASS: wrong-enclosure resource rejection; competing multi-portion requests cannot overspend; invalid/overflow requests rejected.
+Editor method/physics/Animator checks only; no Play Mode gameplay testing.
+PASS: no missing scripts or broken serialized object references in the reloaded scene or project-owned prefabs.

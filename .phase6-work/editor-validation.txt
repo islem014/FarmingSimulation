@@ -1,0 +1,10 @@
+PASS: one sheep, food trough and water trough; care, Animator and scene references assigned.
+PASS: all four approach/use points inside bounds and unobstructed; start routes and route between troughs clear.
+Water position: (-12.40, 0.00, -23.30); drinking position: (-12.40, 0.00, -21.95)
+PASS: needs/health clamps, grace delay/reset, no damage for normal needs, combined damage rate, conditions.
+PASS: treatment amount, confirmation, cooldown rejection/expiry, unnecessary-treatment rejection, recovery from zero.
+PASS: water empty/partial/full visuals, capacity/events, complete portions and no negative water.
+PASS: drinking, empty interruption/resumption, need hysteresis, water tie priority, stable meals, severe-thirst preemption.
+PASS: failed water route preserves food destination; zero-health hydration, treatment routing and NeedsCare recovery.
+PASS: Phase 5 food capacity/visual/event and meal/interruption regression checks.
+Editor method/physics checks only. These do not constitute Play Mode gameplay testing.

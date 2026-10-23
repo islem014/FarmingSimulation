@@ -1,0 +1,36 @@
+using UnityEngine;
+
+namespace FarmingSimulation
+{
+    [RequireComponent(typeof(SheepBehaviour), typeof(AnimalStats))]
+    public sealed class SheepInteractable : FarmInteractable
+    {
+        private SheepBehaviour sheep;
+        private AnimalStats stats;
+        private void Awake()
+        {
+            sheep = GetComponent<SheepBehaviour>();
+            stats = GetComponent<AnimalStats>();
+        }
+        private void OnEnable()
+        {
+            stats.Changed += NotifyFeedbackChanged;
+            sheep.FeedbackChanged += NotifyFeedbackChanged;
+        }
+        private void OnDisable()
+        {
+            stats.Changed -= NotifyFeedbackChanged;
+            sheep.FeedbackChanged -= NotifyFeedbackChanged;
+        }
+        public override string Prompt => !sheep.isActiveAndEnabled ? "Sheep unavailable"
+            : stats.Behaviour == AnimalBehaviour.Eating ? "Sheep fed successfully - eating"
+            : sheep.CoolingDown ? "Please wait before feeding again"
+            : !sheep.NeedsFood ? "Sheep is not hungry"
+            : "Press E to Feed Sheep";
+        public override string Details => stats.AnimalName + " (" + stats.Species + ") | Hunger: "
+            + Mathf.CeilToInt(stats.Hunger) + "/100 (100 = very hungry)\n"
+            + "State: " + stats.Behaviour + " | Thirst: " + Mathf.CeilToInt(stats.Thirst)
+            + "/100 | Health: " + Mathf.CeilToInt(stats.Health) + "/100";
+        public override void Interact() => sheep.TryFeed();
+    }
+}

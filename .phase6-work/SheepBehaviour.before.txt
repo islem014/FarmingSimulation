@@ -1,0 +1,261 @@
+using UnityEngine;
+
+namespace FarmingSimulation
+{
+    [RequireComponent(typeof(CharacterController), typeof(AnimalStats))]
+    public sealed class SheepBehaviour : MonoBehaviour
+    {
+        [SerializeField] private AnimalEnclosure enclosure;
+        [SerializeField] private Animator animator;
+        [SerializeField] private FeedingTrough feedingTrough;
+        [SerializeField, Min(0.1f)] private float moveSpeed = 0.7f;
+        [SerializeField, Min(1f)] private float turnSpeed = 120f;
+        [SerializeField, Min(0.1f)] private float idleDuration = 3f;
+        [SerializeField, Range(1, 100)] private float hungryThreshold = 65f;
+        [SerializeField, Range(0, 99)] private float satisfiedThreshold = 20f;
+        [SerializeField, Min(0.1f)] private float portionInterval = 2f;
+        [SerializeField, Min(1f)] private float hungerPerPortion = 20f;
+        [SerializeField, Min(0.5f)] private float foodRetryInterval = 3f;
+        [SerializeField] private int randomSeed = 123;
+        private CharacterController controller;
+        private AnimalStats stats;
+        private System.Random random;
+        private Vector3 destination;
+        private float stateTime, verticalSpeed;
+        private bool wantsFood, usingApproachPoint, mealAnimated;
+        private string feedingStatus = "Refill the trough to feed this sheep";
+        public AnimalStats Stats => stats;
+        public string FeedingStatus => feedingStatus;
+        public event System.Action FeedbackChanged;
+        private static readonly int Fed = Animator.StringToHash("Fed");
+        private const float ArrivalDistance = 0.18f;
+
+        private void Awake()
+        {
+            ValidateSettings();
+            controller = GetComponent<CharacterController>();
+            stats = GetComponent<AnimalStats>();
+            random = new System.Random(randomSeed);
+            if (enclosure == null || animator == null)
+            {
+                Debug.LogError("SheepBehaviour needs its enclosure and Animator assigned.", this);
+                enabled = false;
+                return;
+            }
+            animator.applyRootMotion = false;
+            SetState(AnimalBehaviour.Idle, idleDuration);
+        }
+
+        private void OnEnable()
+        {
+            if (feedingTrough != null) feedingTrough.FoodChanged += OnFoodChanged;
+        }
+        private void OnDisable()
+        {
+            if (feedingTrough != null) feedingTrough.FoodChanged -= OnFoodChanged;
+        }
+        private void OnFoodChanged() => FeedbackChanged?.Invoke();
+        private void OnValidate() => ValidateSettings();
+        private void ValidateSettings()
+        {
+            hungryThreshold = Mathf.Clamp(hungryThreshold, 1f, 100f);
+            satisfiedThreshold = Mathf.Clamp(satisfiedThreshold, 0f, hungryThreshold - 1f);
+            portionInterval = Mathf.Max(0.1f, portionInterval);
+            hungerPerPortion = Mathf.Max(1f, hungerPerPortion);
+            foodRetryInterval = Mathf.Max(0.5f, foodRetryInterval);
+        }
+
+        private void SetState(AnimalBehaviour state, float seconds, string status = null)
+        {
+            stateTime = seconds;
+            if (status != null) feedingStatus = status;
+            stats.SetBehaviour(state);
+            FeedbackChanged?.Invoke();
+        }
+
+        private void Update()
+        {
+            stateTime -= Time.deltaTime;
+            // Hysteresis: keep seeking/eating until satisfied, even after hunger falls below 65.
+            if (!wantsFood && stats.Hunger >= hungryThreshold)
+            {
+                wantsFood = true;
+                SetState(AnimalBehaviour.Hungry, 0f, "Looking for trough food");
+            }
+
+            Vector3 velocity = Vector3.zero;
+            switch (stats.Behaviour)
+            {
+                case AnimalBehaviour.Hungry:
+                    if (stateTime <= 0f) PlanFoodRoute();
+                    break;
+                case AnimalBehaviour.SeekingFood:
+                    velocity = SeekFood();
+                    break;
+                case AnimalBehaviour.Eating:
+                    EatPortion();
+                    break;
+                case AnimalBehaviour.Idle:
+                    if (stateTime <= 0f) ChooseDestination();
+                    break;
+                case AnimalBehaviour.Wander:
+                    velocity = MoveTowardDestination(false);
+                    break;
+            }
+
+            // Preserve the original enclosure clamp, CharacterController and gravity.
+            Vector3 next = enclosure.ClampPosition(transform.position + velocity * Time.deltaTime);
+            Vector3 step = next - transform.position;
+            step.y = 0f;
+            if (controller.isGrounded && verticalSpeed < 0f) verticalSpeed = -2f;
+            verticalSpeed = Mathf.Max(verticalSpeed - 20f * Time.deltaTime, -30f);
+            CollisionFlags contacts = controller.Move(step + Vector3.up * verticalSpeed * Time.deltaTime);
+            if ((contacts & CollisionFlags.Sides) != 0)
+            {
+                if (stats.Behaviour == AnimalBehaviour.Wander) SetState(AnimalBehaviour.Idle, idleDuration);
+                else if (stats.Behaviour == AnimalBehaviour.SeekingFood) WaitForFood("Path blocked - waiting to retry");
+            }
+        }
+
+        private bool FoodAvailable => feedingTrough != null && feedingTrough.HasPortion
+            && feedingTrough.FeedingPoint != null;
+
+        private void WaitForFood(string message)
+        {
+            // Stay Hungry between timed retries; never bounce into Eating at an empty trough.
+            SetState(AnimalBehaviour.Hungry, foodRetryInterval, message);
+        }
+
+        private Vector3 GroundPoint(Transform point)
+        {
+            Vector3 result = point.position;
+            result.y = transform.position.y;
+            return result;
+        }
+
+        private bool InsideBounds(Vector3 point) =>
+            (enclosure.ClampPosition(point) - point).sqrMagnitude < 0.001f;
+
+        private void PlanFoodRoute()
+        {
+            if (!FoodAvailable)
+            {
+                WaitForFood(feedingTrough == null ? "No trough assigned" : "Hungry - refill the trough");
+                return;
+            }
+            Vector3 goal = GroundPoint(feedingTrough.FeedingPoint);
+            if (!InsideBounds(goal)) { WaitForFood("Feeding point is outside the enclosure"); return; }
+            usingApproachPoint = false;
+            destination = goal;
+            if (!PathIsClear(goal))
+            {
+                // One optional waypoint gives this small pen a simple route around the trough.
+                var approach = feedingTrough.ApproachPoint;
+                if (approach == null) { WaitForFood("Path blocked - waiting to retry"); return; }
+                Vector3 via = GroundPoint(approach);
+                if (!InsideBounds(via) || !PathIsClear(via) || !PathIsClearFrom(via, goal))
+                { WaitForFood("Path blocked - waiting to retry"); return; }
+                destination = via;
+                usingApproachPoint = true;
+            }
+            SetState(AnimalBehaviour.SeekingFood, 30f, "Moving to the feeding trough");
+        }
+
+        private Vector3 SeekFood()
+        {
+            if (!FoodAvailable) { WaitForFood("Hungry - refill the trough"); return Vector3.zero; }
+            if (PlanarDistance(destination) <= ArrivalDistance)
+            {
+                if (usingApproachPoint)
+                {
+                    usingApproachPoint = false;
+                    destination = GroundPoint(feedingTrough.FeedingPoint);
+                    stateTime = 30f;
+                }
+                else
+                {
+                    mealAnimated = false;
+                    SetState(AnimalBehaviour.Eating, portionInterval, "Eating from the trough");
+                }
+                return Vector3.zero;
+            }
+            return MoveTowardDestination(true);
+        }
+
+        private void EatPortion()
+        {
+            if (stats.Hunger <= satisfiedThreshold) { FinishMeal(); return; }
+            if (!FoodAvailable) { WaitForFood("Hungry - refill the trough"); return; }
+            Vector3 point = GroundPoint(feedingTrough.FeedingPoint);
+            // No remote meals: moving the animal/trough or blocking its feeding spot interrupts it.
+            if (PlanarDistance(point) > ArrivalDistance + 0.1f || !PathIsClear(point))
+            { WaitForFood("Feeding spot blocked - waiting to retry"); return; }
+            Vector3 facing = feedingTrough.transform.position - transform.position;
+            facing.y = 0f;
+            if (facing.sqrMagnitude > 0.001f) RotateToward(facing);
+            if (stateTime > 0f) return;
+            stateTime = portionInterval;
+            if (!feedingTrough.TryConsumePortion()) { WaitForFood("Hungry - refill the trough"); return; }
+            // Only this path reduces hunger: successful food consumption always comes first.
+            stats.ReduceHunger(hungerPerPortion);
+            if (!mealAnimated) { animator.SetTrigger(Fed); mealAnimated = true; }
+            if (stats.Hunger <= satisfiedThreshold) FinishMeal();
+            else if (!FoodAvailable) WaitForFood("Hungry - refill the trough");
+        }
+
+        private void FinishMeal()
+        {
+            wantsFood = false;
+            SetState(AnimalBehaviour.Idle, idleDuration, "Satisfied - returning to wandering");
+        }
+
+        private float PlanarDistance(Vector3 point)
+        {
+            Vector3 offset = point - transform.position; offset.y = 0f;
+            return offset.magnitude;
+        }
+
+        private Vector3 MoveTowardDestination(bool seeking)
+        {
+            Vector3 offset = destination - transform.position; offset.y = 0f;
+            if (offset.magnitude <= ArrivalDistance || stateTime <= 0f
+                || !PathIsClear(transform.position + offset.normalized * Mathf.Min(0.8f, offset.magnitude)))
+            {
+                if (seeking) WaitForFood("Path blocked - waiting to retry");
+                else SetState(AnimalBehaviour.Idle, idleDuration);
+                return Vector3.zero;
+            }
+            RotateToward(offset);
+            return offset.normalized * Mathf.Min(moveSpeed, offset.magnitude / Mathf.Max(Time.deltaTime, 0.001f));
+        }
+
+        private void RotateToward(Vector3 offset) => transform.rotation = Quaternion.RotateTowards(
+            transform.rotation, Quaternion.LookRotation(offset), turnSpeed * Time.deltaTime);
+
+        private void ChooseDestination()
+        {
+            for (int attempt = 0; attempt < 12; attempt++)
+            {
+                Vector3 candidate = enclosure.SampleDestination(random, transform.position.y);
+                if (Vector3.Distance(candidate, transform.position) > 0.8f && PathIsClear(candidate))
+                {
+                    destination = candidate;
+                    SetState(AnimalBehaviour.Wander, 15f);
+                    return;
+                }
+            }
+            SetState(AnimalBehaviour.Idle, idleDuration);
+        }
+
+        private bool PathIsClear(Vector3 point) => PathIsClearFrom(transform.position, point);
+        private bool PathIsClearFrom(Vector3 origin, Vector3 point)
+        {
+            Vector3 offset = point - origin; offset.y = 0f;
+            float clearance = controller.radius + 0.05f;
+            if (offset.sqrMagnitude < 0.0001f) return true;
+            return !PlayerPhysicsQueries.SphereCast(origin + Vector3.up * (clearance + 0.1f),
+                clearance, offset.normalized, offset.magnitude, transform, out _);
+        }
+    }
+}
+

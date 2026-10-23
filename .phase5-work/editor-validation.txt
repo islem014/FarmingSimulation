@@ -1,0 +1,6 @@
+PASS: one existing sheep and enclosure; trough assigned.
+PASS: feeding/approach positions within bounds; feeding position unobstructed; start route clear.
+PASS: empty consumption rejected, refill clamped, ten portions consumed, no negative food, hay states/events.
+PASS: actual AI methods on preview instances: empty wait, seek/eat, portion payment, satisfaction, interrupted meal, inspection only.
+Editor checks only; no Play Mode gameplay test.
+Trough: (-12.40, 0.00, -18.70); feeding point: (-12.40, 0.00, -20.05)

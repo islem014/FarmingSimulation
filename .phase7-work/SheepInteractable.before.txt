@@ -1,0 +1,47 @@
+using UnityEngine;
+
+namespace FarmingSimulation
+{
+    [RequireComponent(typeof(SheepBehaviour), typeof(AnimalStats), typeof(AnimalCare))]
+    public sealed class SheepInteractable : FarmInteractable
+    {
+        private SheepBehaviour sheep;
+        private AnimalStats stats;
+        private AnimalCare care;
+        private bool inspected;
+        private void Awake()
+        {
+            sheep = GetComponent<SheepBehaviour>();
+            stats = GetComponent<AnimalStats>();
+            care = GetComponent<AnimalCare>();
+        }
+        private void OnEnable()
+        {
+            stats.Changed += NotifyFeedbackChanged;
+            sheep.FeedbackChanged += NotifyFeedbackChanged;
+            if (care != null) care.FeedbackChanged += NotifyFeedbackChanged;
+        }
+        private void OnDisable()
+        {
+            stats.Changed -= NotifyFeedbackChanged;
+            sheep.FeedbackChanged -= NotifyFeedbackChanged;
+            if (care != null) care.FeedbackChanged -= NotifyFeedbackChanged;
+        }
+        public override string Prompt => !sheep.isActiveAndEnabled ? "Sheep unavailable"
+            : care != null && care.ShowingConfirmation ? "Treatment given - keep food and water available"
+            : care != null && care.CanTreat ? "Press E to Treat Sheep"
+            : care != null && care.CooldownRemaining > 0f ? "Treatment cooldown: " + Mathf.CeilToInt(care.CooldownRemaining) + "s"
+            : inspected ? sheep.FeedingStatus : "Press E to Inspect Sheep";
+        public override string Details => stats.AnimalName + " | Hunger " + Mathf.CeilToInt(stats.Hunger)
+            + "/100 | Thirst " + Mathf.CeilToInt(stats.Thirst) + "/100 | Health " + Mathf.CeilToInt(stats.Health) + "/100\n"
+            + stats.Behaviour + " | " + (stats.Condition == AnimalCondition.NeedsCare ? "Needs Care" : stats.Condition.ToString())
+            + " | " + stats.Warning;
+        // Shared E action treats only when eligible; inspection never changes food or water needs.
+        public override void Interact()
+        {
+            if (care != null && care.TryTreat()) return;
+            inspected = true;
+            NotifyFeedbackChanged();
+        }
+    }
+}

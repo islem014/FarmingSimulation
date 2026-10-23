@@ -1,0 +1,16 @@
+{
+  "modified": [
+    "Assets\\FarmingSimulation\\Animals\\Prefabs\\Cow.prefab",
+    "Assets\\FarmingSimulation\\Scripts\\Animals\\AnimalStats.cs",
+    "Assets\\FarmingSimulation\\Animals\\Prefabs\\Pig.prefab",
+    "Assets\\FarmingSimulation\\Animals\\Prefabs\\Sheep.prefab",
+    "Assets\\FarmingSimulation\\Animals\\Prefabs\\Horse.prefab",
+    "Assets\\FarmingSimulation\\Scripts\\Animals\\AnimalInteractable.cs",
+    "Assets\\FarmingSimulation\\Scripts\\Animals\\FarmAnimalBehaviour.cs"
+  ],
+  "created": [
+    "Assets\\FarmingSimulation\\Editor\\Phase8ASetup.cs",
+    "Assets\\FarmingSimulation\\Editor\\Phase8ASetup.cs.meta"
+  ],
+  "missing": []
+}

@@ -1,0 +1,23 @@
+Daisy Phase 6 and Phase 5 editor regression checks passed after shared-component extraction.
+Cow: Generic, +Z forward, baked Idle mesh height 1.50m; normalization 0.002914; collider radius 0.80, height 1.70; root motion off.
+Cow pen centre (-10.00, 0.00, -3.00), 8x8m, inset 1.10, trough stand-off 1.50, entrance east
+Pig uses actual Armature|Idle: 6.250s, loop=True
+Pig uses actual Armature|Jump: 1.500s, loop=False
+Pig material Material.003 -> owned URP/Lit; texture=none
+Pig material Material -> owned URP/Lit; texture=none
+Pig: Generic, +Z forward, baked Idle mesh height 0.85m; normalization 0.001852; collider radius 0.60, height 1.30; root motion off.
+Pig pen centre (12.00, 0.00, -25.00), 8x8m, inset 1.10, trough stand-off 1.35, entrance west
+Horse uses actual Armature|Idle: 6.250s, loop=True
+Horse uses actual Armature|WalkSlow: 2.000s, loop=True
+Horse material Material.003 -> owned URP/Lit; texture=none
+Horse material Material.006 -> owned URP/Lit; texture=none
+Horse: Generic, +Z forward, baked Idle mesh height 1.80m; normalization 0.002607; collider radius 0.85, height 1.80; root motion off.
+Horse pen centre (12.00, 0.00, 1.00), 8x8m, inset 1.10, trough stand-off 1.55, entrance west
+Daisy (Sheep): own pen/food/water/care/Animator references valid; route points and starting/between-trough paths clear.
+Marguerite (Cow): own pen/food/water/care/Animator references valid; route points and starting/between-trough paths clear.
+Peppa (Pig): own pen/food/water/care/Animator references valid; route points and starting/between-trough paths clear.
+Spirit (Horse): own pen/food/water/care/Animator references valid; route points and starting/between-trough paths clear.
+PASS: new pen footprints clear of existing rendered scenery/plots; all three player entrances clear; 400 sampled destinations remain bounded.
+PASS: actual shared AI methods on all four species: independent feeding/drinking portions, satisfaction, species HUD, treatment and cooldown/recovery.
+PASS: wrong-enclosure resource rejection; competing multi-portion requests cannot overspend; invalid/overflow requests rejected.
+Editor method/physics/Animator checks only; no Play Mode gameplay testing.

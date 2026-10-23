@@ -1,0 +1,15 @@
+Imported rig: Generic; original model/importer settings unchanged.
+Available clip: Armature|Jump (1); 1.125s; legacy=False
+Available clip: Armature|Jump; 1.125s; legacy=False
+Available clip: __preview__Armature|Jump; 1.125s; legacy=False
+Available clip: __preview__Armature|Idle; 6.250s; legacy=False
+Imported material: White; color=RGBA(0.906, 0.906, 0.906, 1.000); texture=none
+Imported material: Black; color=RGBA(0.213, 0.213, 0.213, 1.000); texture=none
+Exported Armature|Idle: 6.250s; 250 curves, 37 changing; loop=True.
+Exported Armature|Jump: 1.125s; 250 curves, 90 changing; loop=False.
+Uniform model scale multiplier: 0.2113911; aligned bind-pose height=1.1m.
+All animation binding paths resolve on the Generic rig. No Avatar or root motion required for these transform curves.
+Editor Animator evaluation passed Idle -> Fed -> Jump -> Idle; root placement/scale unchanged. This is not Play Mode.
+Scene: one sheep at (-11.5, 0.05, -21.5); enclosure X [-15,-7], Z [-25,-17].
+Walking boundary inset 1m; entrance on east side, 2m wide, gate held open inward.
+No walk/eat takes exist. Idle is the placeholder; successful feeding triggers one Jump.

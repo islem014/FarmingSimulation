@@ -1,0 +1,44 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# IDE generated files
+.vs/
+.vscode/
+.idea/
+ExportedObj/
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Unity caches
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Crash files
+sysinfo.txt
+
+# Unity Asset Store tooling
+Assets/AssetStoreTools*
+
+# Keep Unity meta files
+!*.meta

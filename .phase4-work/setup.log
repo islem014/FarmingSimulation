@@ -1,0 +1,96 @@
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 15432)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 12512)
+VBCSCompiler prewarm took 15.65 ms
+.phase4-work is not a valid directory name. Please make sure there are no unallowed characters in the name.
+.phase4-work is not a valid directory name. Please make sure there are no unallowed characters in the name.
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/staging' branch; Version is '6000.6.7f1 (b22767f04f04) revision 11675495'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-islem" at "2026-10-22T11:25:54.5573888Z"
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'en' Physical Memory: 32493 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-10-22T11:25:54Z
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 9452, path: "C:/Program Files/Unity/Hub/Editor/6000.6.7f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.7f1\Editor\Unity.exe
+-batchmode
+-nographics
+-projectPath
+C:/Users/islem/FarmingSimulation
+-executeMethod
+FarmingSimulation.Editor.Phase4Setup.Build
+-quit
+-logFile
+C:/Users/islem/FarmingSimulation/.phase4-work/setup.log
+Successfully changed project path to: C:/Users/islem/FarmingSimulation
+C:/Users/islem/FarmingSimulation
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [11732]  Target information:
+
+Player connection [11732]  * "[IP] 192.168.1.243 [Port] 55504 [Flags] 2 [Guid] 1227115995 [EditorId] 1227115995 [Version] 1048832 [Id] WindowsEditor(7,lwa7ch) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [11732] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [11732] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.3+d7ffd15
+  Session Id:              ac7cf60d90be4a6c82caebb1ac30daa9
+  Correlation Id:          75c18c60a477912682545ed88413e6a6
+  External correlation Id: 8347445895512332346
+  Machine Id:              9XIUbKCgv5DS4VVDxaUIX9GAzdg=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-islem" (connect: 0.00s, validation: 0.28s, handshake: 0.06s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-islem-notifications" at "2026-10-22T11:25:54.8975735Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Error: Code 404 while processing request (status: Found 0 entitlement groups and 0 free entitlements matching requested entitlement ids)
+[Licensing::Client] Successfully updated license, isAsync: False, time: 0.05
+[Licensing::Client] Error: Code 404 while processing request (status: Found 0 entitlement groups and 0 free entitlements matching requested entitlement ids)
+[Licensing::Module] Error: 'com.unity.editor.headless' was not found.
+[Licensing::Module] Licensing Background thread has ended after 0.43s
+[Package Manager] Connected to IPC stream "Upm-15096" after 0.3 seconds.
+[Licensing::Client] Error: Code 404 while processing request (status: Found 0 entitlement groups and 0 free entitlements matching requested entitlement ids)
+[Licensing::Module] Error: 'com.unity.editor.headless' was not found.
+[Licensing::Client] Error: Code 404 while processing request (status: Found 0 entitlement groups and 0 free entitlements matching requested entitlement ids)
+No valid Unity Editor license found. Please activate your license.
+[ExitDontLaunchBugReporter] Exiting without the bug reporter. Application will exit with return code 198

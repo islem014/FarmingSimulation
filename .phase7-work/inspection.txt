@@ -1,0 +1,140 @@
+Sheep: rig=Generic, scale=1
+  clip __preview__Armature|Jump: 1.125s, 250 curves, legacy=False
+  clip __preview__Armature|Idle: 6.250s, 250 curves, legacy=False
+  clip Armature|Jump (1): 1.125s, 250 curves, legacy=False
+  clip Armature|Jump: 1.125s, 250 curves, legacy=False
+  material Black RGBA(0.213, 0.213, 0.213, 1.000) texture=none
+  material White RGBA(0.906, 0.906, 0.906, 1.000) texture=none
+  bind bounds Center: (-0.03, 2.51, 0.33), Extents: (1.19, 2.60, 3.54); Animator=False
+  bone Hips position (0.03, 3.09, -1.12)
+  bone Head position (0.03, 4.04, 2.36)
+Cow: rig=Generic, scale=1
+  clip Armature|Walk: 3.333s, 290 curves, legacy=False
+  clip __preview__Armature|Jump: 1.708s, 290 curves, legacy=False
+  clip __preview__Armature|Run: 1.417s, 290 curves, legacy=False
+  clip __preview__Armature|Idle: 6.250s, 290 curves, legacy=False
+  clip Armature|Idle: 6.250s, 290 curves, legacy=False
+  clip Armature|WalkSlow: 2.083s, 290 curves, legacy=False
+  clip Armature|Run: 1.417s, 290 curves, legacy=False
+  clip Armature|Death: 1.250s, 290 curves, legacy=False
+  clip Armature|Jump: 1.708s, 290 curves, legacy=False
+  clip __preview__Armature|Death: 1.250s, 290 curves, legacy=False
+  clip __preview__Armature|WalkSlow: 2.083s, 290 curves, legacy=False
+  clip __preview__Armature|Walk: 3.333s, 290 curves, legacy=False
+  material White RGBA(0.906, 0.906, 0.906, 1.000) texture=none
+  material Pink RGBA(0.906, 0.457, 0.503, 1.000) texture=none
+  material Black RGBA(0.187, 0.187, 0.187, 1.000) texture=none
+  bind bounds Center: (0.14, 3.22, 0.73), Extents: (1.43, 3.34, 5.30); Animator=False
+  bone Hips position (0.03, 3.44, -1.75)
+  bone Head position (0.03, 4.63, 3.72)
+Pig: rig=Generic, scale=1
+  clip __preview__Armature|Jump: 1.500s, 250 curves, legacy=False
+  clip Armature|Jump: 1.500s, 250 curves, legacy=False
+  clip Armature|Idle: 6.250s, 250 curves, legacy=False
+  clip __preview__Armature|Idle: 6.250s, 250 curves, legacy=False
+  material Material RGBA(0.487, 0.327, 0.244, 1.000) texture=none
+  material Material.003 RGBA(0.847, 0.631, 0.643, 1.000) texture=none
+  bind bounds Center: (0.16, 2.69, 0.15), Extents: (1.92, 2.88, 5.70); Animator=False
+  bone Hips position (0.03, 3.13, -2.17)
+  bone Head position (0.03, 3.07, 3.19)
+Horse: rig=Generic, scale=1
+  clip Armature|Walk: 2.667s, 290 curves, legacy=False
+  clip __preview__Armature|Jump: 1.500s, 290 curves, legacy=False
+  clip __preview__Armature|Run: 1.000s, 290 curves, legacy=False
+  clip __preview__Armature|Idle: 6.250s, 290 curves, legacy=False
+  clip Armature|Idle: 6.250s, 290 curves, legacy=False
+  clip Armature|WalkSlow: 2.000s, 290 curves, legacy=False
+  clip Armature|Run: 0.833s, 290 curves, legacy=False
+  clip Armature|Death: 1.083s, 290 curves, legacy=False
+  clip Armature|Jump: 1.500s, 290 curves, legacy=False
+  clip __preview__Armature|WalkSlow: 2.000s, 290 curves, legacy=False
+  clip __preview__Armature|Walk: 2.667s, 290 curves, legacy=False
+  clip __preview__Armature|Death: 1.083s, 290 curves, legacy=False
+  material Material.003 RGBA(0.455, 0.302, 0.239, 1.000) texture=none
+  material Material.006 RGBA(0.153, 0.153, 0.153, 1.000) texture=none
+  bind bounds Center: (-0.08, 3.90, 0.74), Extents: (1.96, 3.96, 5.10); Animator=False
+  bone Hips position (0.03, 3.99, -1.49)
+  bone Head position (0.03, 6.22, 3.46)
+SCENE COLLIDERS (world-space bounds):
+OutHouseBase Area: Center: (27.00, 1.00, 24.00), Extents: (0.63, 1.00, 0.67)
+Silo Area: Center: (-29.00, 5.70, -2.00), Extents: (2.30, 5.70, 1.90)
+OldShed Area: Center: (-18.00, 1.75, -10.00), Extents: (1.70, 1.75, 1.70)
+Shed Area: Center: (18.00, 1.13, -9.00), Extents: (2.25, 1.13, 2.25)
+BarnBase Area: Center: (-19.00, 5.80, 14.00), Extents: (9.60, 5.80, 8.75)
+House Area: Center: (18.00, 5.00, 15.00), Extents: (5.80, 5.00, 6.90)
+ChickenHouse Area: Center: (12.00, 0.75, -17.00), Extents: (0.70, 0.75, 0.65)
+WindMill Area: Center: (29.00, 4.00, -3.00), Extents: (1.05, 4.00, 1.05)
+Ground: Center: (0.00, -0.25, 0.00), Extents: (36.00, 0.25, 32.00)
+Courtyard: Center: (0.00, -0.04, -3.00), Extents: (7.00, 0.05, 22.00)
+North Boundary: Center: (0.00, 0.75, 31.75), Extents: (36.00, 0.75, 0.25)
+South Boundary: Center: (0.00, 0.75, -31.75), Extents: (36.00, 0.75, 0.25)
+West Boundary: Center: (-35.75, 0.75, 0.00), Extents: (0.25, 0.75, 31.50)
+East Boundary: Center: (35.75, 0.75, 0.00), Extents: (0.25, 0.75, 31.50)
+North Fence 1: Center: (-14.00, 0.75, -17.00), Extents: (1.00, 0.75, 0.12)
+South Fence 1: Center: (-14.00, 0.75, -25.00), Extents: (1.00, 0.75, 0.12)
+West Fence 1: Center: (-15.00, 0.75, -24.00), Extents: (0.12, 0.75, 1.00)
+North Fence 2: Center: (-12.00, 0.75, -17.00), Extents: (1.00, 0.75, 0.12)
+South Fence 2: Center: (-12.00, 0.75, -25.00), Extents: (1.00, 0.75, 0.12)
+West Fence 2: Center: (-15.00, 0.75, -22.00), Extents: (0.12, 0.75, 1.00)
+North Fence 3: Center: (-10.00, 0.75, -17.00), Extents: (1.00, 0.75, 0.12)
+South Fence 3: Center: (-10.00, 0.75, -25.00), Extents: (1.00, 0.75, 0.12)
+West Fence 3: Center: (-15.00, 0.75, -20.00), Extents: (0.12, 0.75, 1.00)
+North Fence 4: Center: (-8.00, 0.75, -17.00), Extents: (1.00, 0.75, 0.12)
+South Fence 4: Center: (-8.00, 0.75, -25.00), Extents: (1.00, 0.75, 0.12)
+West Fence 4: Center: (-15.00, 0.75, -18.00), Extents: (0.12, 0.75, 1.00)
+East Fence South: Center: (-7.00, 0.75, -24.00), Extents: (0.12, 0.75, 1.00)
+East Fence South Post: Center: (-7.00, 0.75, -22.50), Extents: (0.12, 0.75, 0.50)
+East Fence North Post: Center: (-7.00, 0.75, -19.50), Extents: (0.12, 0.75, 0.50)
+East Fence North: Center: (-7.00, 0.75, -18.00), Extents: (0.12, 0.75, 1.00)
+Gate - held open: Center: (-8.05, 0.68, -20.00), Extents: (0.93, 0.68, 0.10)
+FeedingTrough: Center: (-12.40, 0.28, -18.70), Extents: (1.20, 0.28, 0.42)
+WaterTrough: Center: (-12.40, 0.28, -23.30), Extents: (1.20, 0.28, 0.42)
+Farmer Player: Center: (0.00, 1.00, -22.00), Extents: (0.30, 0.90, 0.30)
+Plot 1: Center: (-4.00, 0.13, -14.00), Extents: (1.20, 0.11, 1.20)
+Plot 2: Center: (0.00, 0.13, -14.00), Extents: (1.20, 0.11, 1.20)
+Plot 3: Center: (4.00, 0.13, -14.00), Extents: (1.20, 0.11, 1.20)
+Physics Demo Crate: Center: (-5.00, 4.00, -21.00), Extents: (0.50, 0.50, 0.50)
+Sheep: Center: (-11.50, 0.65, -21.50), Extents: (0.55, 0.60, 0.55)
+ENVIRONMENT GROUPS (renderer bounds):
+FoodTrough Area/FoodTrough: Center: (13.00, -0.04, -14.00), Extents: (1.90, 0.27, 0.40)
+RockingChair Area/RockingChair: Center: (14.00, 0.74, 8.00), Extents: (0.40, 0.73, 0.47)
+OutHouseBase Area/OutHouseBase: Center: (27.00, 0.98, 24.00), Extents: (0.63, 0.98, 0.67)
+Silo Area/Silo: Center: (-29.40, 5.71, -2.00), Extents: (2.30, 5.71, 1.90)
+Gate Area/Gate: Center: (13.00, 0.79, -19.00), Extents: (0.83, 0.68, 0.02)
+Fence Area/Fence: Center: (10.00, 0.75, -18.98), Extents: (1.04, 0.75, 0.06)
+OldShed Area/OldShed: Center: (-18.00, 1.75, -10.00), Extents: (1.70, 1.75, 1.68)
+Shed Area/Shed: Center: (18.00, 1.13, -9.00), Extents: (1.37, 1.13, 1.23)
+Box Area/Box: Center: (-15.00, 0.35, -7.00), Extents: (0.35, 0.35, 0.35)
+HaiSquare Area/HaiSquare: Center: (-8.00, 0.68, 9.00), Extents: (0.60, 0.25, 0.35)
+Log Area/Log: Center: (20.00, 0.09, -12.00), Extents: (0.12, 0.40, 0.11)
+HaiCylinder Area/HaiCylinder: Center: (-8.00, 0.75, 7.00), Extents: (0.75, 0.75, 0.75)
+Well Area/Well: Center: (5.00, 1.02, -2.00), Extents: (0.80, 1.02, 0.84)
+BarnBase Area/BarnBase: Center: (-19.00, 5.83, 14.00), Extents: (9.59, 5.83, 8.71)
+WheelCart Area/WheelCart: Center: (-8.00, 0.49, 3.00), Extents: (0.91, 0.46, 1.59)
+Shovel Area/Shovel: Center: (-16.00, 0.87, -10.00), Extents: (0.15, 0.85, 0.02)
+Barell Area/Barell: Center: (-16.50, 0.59, -7.00), Extents: (0.40, 0.59, 0.39)
+Stool Area/Stool: Center: (12.00, 0.34, 8.00), Extents: (0.33, 0.34, 0.33)
+House Area/House: Center: (17.75, 4.99, 16.85), Extents: (5.51, 4.99, 5.05)
+ChickenHouse Area/ChickenHouse: Center: (11.80, 0.79, -16.85), Extents: (0.68, 0.77, 0.63)
+Rake Area/Rake: Center: (-16.00, 0.86, -10.92), Extents: (0.30, 0.86, 0.11)
+Bucket Area/Bucket: Center: (6.50, 0.30, -2.00), Extents: (0.22, 0.30, 0.20)
+WindMill Area/WindMill: Center: (29.05, 5.85, -3.86), Extents: (1.64, 5.86, 2.11)
+AnimalEnclosure/North Fence 1: Center: (-14.00, 0.75, -17.00), Extents: (1.00, 0.75, 0.06)
+AnimalEnclosure/South Fence 1: Center: (-14.00, 0.75, -25.00), Extents: (1.00, 0.75, 0.06)
+AnimalEnclosure/West Fence 1: Center: (-15.00, 0.75, -24.00), Extents: (0.06, 0.75, 1.00)
+AnimalEnclosure/North Fence 2: Center: (-12.00, 0.75, -17.00), Extents: (1.00, 0.75, 0.06)
+AnimalEnclosure/South Fence 2: Center: (-12.00, 0.75, -25.00), Extents: (1.00, 0.75, 0.06)
+AnimalEnclosure/West Fence 2: Center: (-15.00, 0.75, -22.00), Extents: (0.06, 0.75, 1.00)
+AnimalEnclosure/North Fence 3: Center: (-10.00, 0.75, -17.00), Extents: (1.00, 0.75, 0.06)
+AnimalEnclosure/South Fence 3: Center: (-10.00, 0.75, -25.00), Extents: (1.00, 0.75, 0.06)
+AnimalEnclosure/West Fence 3: Center: (-15.00, 0.75, -20.00), Extents: (0.06, 0.75, 1.00)
+AnimalEnclosure/North Fence 4: Center: (-8.00, 0.75, -17.00), Extents: (1.00, 0.75, 0.06)
+AnimalEnclosure/South Fence 4: Center: (-8.00, 0.75, -25.00), Extents: (1.00, 0.75, 0.06)
+AnimalEnclosure/West Fence 4: Center: (-15.00, 0.75, -18.00), Extents: (0.06, 0.75, 1.00)
+AnimalEnclosure/East Fence South: Center: (-7.00, 0.75, -24.00), Extents: (0.06, 0.75, 1.00)
+AnimalEnclosure/East Fence South Post: Center: (-7.00, 0.75, -22.50), Extents: (0.06, 0.75, 0.50)
+AnimalEnclosure/East Fence North Post: Center: (-7.00, 0.75, -19.50), Extents: (0.06, 0.75, 0.50)
+AnimalEnclosure/East Fence North: Center: (-7.00, 0.75, -18.00), Extents: (0.06, 0.75, 1.00)
+AnimalEnclosure/Gate - held open: Center: (-8.05, 0.68, -20.00), Extents: (0.93, 0.68, 0.02)
+AnimalEnclosure/FeedingTrough: Center: (-12.40, 0.28, -18.70), Extents: (1.20, 0.28, 0.40)
+AnimalEnclosure/WaterTrough: Center: (-12.40, 0.28, -23.30), Extents: (1.20, 0.28, 0.40)
